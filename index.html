@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>MISSION : BROTHERHOOD 2025 – Invite</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      :root {
+        --bg1: #030618;
+        --bg2: #0b1830;
+        --gold: #d9b56b;
+        --muted: #9aa7bf;
+        --glass: rgba(255, 255, 255, 0.06);
+      }
+      * {
+        box-sizing: border-box;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+      }
+      body {
+        margin: 0;
+        background: linear-gradient(180deg, var(--bg1), var(--bg2));
+        color: #fff;
+        min-height: 100vh;
+        overflow: hidden;
+      }
+      .bg {
+        position: fixed;
+        inset: 0;
+        background: radial-gradient(
+            circle at 10% 0%,
+            rgba(217, 181, 107, 0.14),
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 90% 80%,
+            rgba(84, 180, 255, 0.18),
+            transparent 55%
+          );
+        opacity: 0.9;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .app {
+        position: relative;
+        z-index: 1;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+      }
+      .card {
+        background: var(--glass);
+        border-radius: 16px;
+        box-shadow: 0 18px 60px rgba(0, 0, 0, 0.6);
+        padding: 20px;
+        max-width: 960px;
+        width: 100%;
+        backdrop-filter: blur(14px);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+      }
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        letter-spacing: 1px;
+      }
+      .title {
+        font-size: 26px;
+        font-weight: 700;
+        text-transform: uppercase;
+        text-align: center;
+      }
+      .title span {
+        color: var(--gold);
+      }
+      .subtitle {
+        text-align: center;
+        color: var(--muted);
+        margin-top: 4px;
+        font-size: 14px;
+      }
+      .entry-tip {
+        margin-top: 12px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 16px;
+        gap: 10px;
+      }
+      .btn {
+        border: none;
+        border-radius: 999px;
+        padding: 10px 18px;
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: linear-gradient(90deg, var(--gold), #ffb86b);
+        color: #111;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+      }
+      .btn.alt {
+        background: linear-gradient(90deg, #4b92ff, #2563eb);
+        color: #f9fafb;
+      }
+      .btn.ghost {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #e5e7eb;
+        box-shadow: none;
+      }
+      .status {
+        font-size: 13px;
+        color: var(--muted);
+        min-height: 18px;
+        text-align: center;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      /* MAIN LAYOUT */
+      .layout {
+        display: grid;
+        grid-template-columns: 2fr 1.2fr;
+        gap: 16px;
+        margin-top: 18px;
+      }
+      @media (max-width: 800px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .section {
+        padding: 14px;
+        border-radius: 14px;
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.04);
+      }
+      .section h3 {
+        font-size: 15px;
+        text-transform: uppercase;
+        color: #e5e7eb;
+        margin-bottom: 8px;
+      }
+      .event-details p {
+        margin: 4px 0;
+        font-size: 14px;
+        color: #e5e7eb;
+      }
+      .event-details span.label {
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 11px;
+      }
+      .question-block {
+        margin-top: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        background: rgba(15, 23, 42, 0.6);
+        border: 1px solid rgba(148, 163, 184, 0.35);
+      }
+      .question-text {
+        font-size: 14px;
+        margin-bottom: 6px;
+      }
+      .answer-row {
+        display: flex;
+        gap: 8px;
+        margin-top: 6px;
+        flex-wrap: wrap;
+      }
+      input[type="text"],
+      textarea {
+        width: 100%;
+        background: rgba(15, 23, 42, 0.9);
+        border-radius: 10px;
+        border: 1px solid rgba(148, 163, 184, 0.4);
+        padding: 8px 10px;
+        font-size: 13px;
+        color: #e5e7eb;
+        resize: none;
+        min-height: 36px;
+      }
+      input[type="text"]:focus,
+      textarea:focus {
+        outline: none;
+        border-color: var(--gold);
+        box-shadow: 0 0 0 1px rgba(217, 181, 107, 0.4);
+      }
+      .small {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 3px 8px;
+        border-radius: 999px;
+        font-size: 11px;
+        background: rgba(148, 163, 184, 0.18);
+        color: #e5e7eb;
+        margin-right: 4px;
+        margin-top: 4px;
+      }
+
+      .answers-list {
+        font-size: 13px;
+        color: #e5e7eb;
+      }
+      .answers-list p {
+        margin: 4px 0;
+      }
+
+      .attendees {
+        font-size: 13px;
+        color: #e5e7eb;
+        max-height: 140px;
+        overflow: auto;
+      }
+      .attendees-empty {
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .poster {
+        margin-top: 10px;
+        padding: 14px;
+        border-radius: 14px;
+        border: 1px solid rgba(217, 181, 107, 0.4);
+        background: radial-gradient(
+            circle at 10% 0%,
+            rgba(217, 181, 107, 0.08),
+            transparent 55%
+          ),
+          radial-gradient(circle at 90% 100%, rgba(51, 65, 85, 0.8), #020617);
+        text-align: center;
+      }
+      .poster-title {
+        font-size: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+      }
+      .poster-sub {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+      .poster-name {
+        margin-top: 10px;
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--gold);
+      }
+      .poster-tagline {
+        margin-top: 8px;
+        font-size: 13px;
+        color: #e5e7eb;
+      }
+      .poster-meta {
+        margin-top: 10px;
+        font-size: 11px;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg"></div>
+    <audio id="bgMusic" src="party.wav" loop></audio>
+
+    <div class="app">
+      <div class="card" id="entryCard">
+        <div class="title">MISSION : <span>BROTHERHOOD 2025</span></div>
+        <div class="subtitle">Hyderabad · 28 December 2025</div>
+
+        <div class="center">
+          <button class="btn" id="startVoiceBtn">
+            🎤 Say your name to enter
+          </button>
+          <div class="status" id="entryStatus">Waiting for you…</div>
+          <div class="small">If mic doesn’t work, type your name:</div>
+          <div
+            style="
+              display: flex;
+              gap: 8px;
+              flex-wrap: wrap;
+              justify-content: center;
+            "
+          >
+            <input
+              type="text"
+              id="nameInput"
+              placeholder="Type your name"
+              style="max-width: 180px"
+            />
+            <button class="btn ghost" id="enterTypedBtn">Enter</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card hidden" id="mainCard">
+        <div class="title">MISSION : <span>BROTHERHOOD 2025</span></div>
+        <div class="subtitle" id="welcomeSubtitle">Welcome, Agent.</div>
+
+        <div class="layout">
+          <!-- LEFT: main interaction -->
+          <div class="section">
+            <h3>Event Intel</h3>
+            <div class="event-details">
+              <p>
+                <span class="label">Event</span><br />MISSION : BROTHERHOOD 2025
+              </p>
+              <p><span class="label">Date</span><br />28 December 2025</p>
+              <p><span class="label">Place</span><br />Hyderabad</p>
+            </div>
+
+            <!-- Questions -->
+            <div class="question-block" id="q1Block">
+              <div class="question-text">1. Who is your best friend?</div>
+              <div class="answer-row">
+                <input
+                  type="text"
+                  id="bestFriendInput"
+                  placeholder="Type your answer"
+                />
+                <button class="btn alt" id="bestFriendVoiceBtn">
+                  🎤 Answer by voice
+                </button>
+                <button class="btn" id="bestFriendSaveBtn">Save</button>
+              </div>
+              <div class="small" id="q1Hint">Asked once. Take your time.</div>
+            </div>
+
+            <div class="question-block" id="q2Block">
+              <div class="question-text">2. Why is he your best friend?</div>
+              <div class="answer-row">
+                <textarea
+                  id="reasonInput"
+                  placeholder="Type your reason"
+                ></textarea>
+                <button class="btn alt" id="reasonVoiceBtn">
+                  🎤 Answer by voice
+                </button>
+                <button class="btn" id="reasonSaveBtn">Save</button>
+              </div>
+              <div class="small" id="q2Hint">
+                Only saved once. Make it special.
+              </div>
+            </div>
+
+            <div class="question-block" id="joinBlock">
+              <div class="question-text">3. Are you joining?</div>
+              <div class="answer-row">
+                <button class="btn" id="joinYesBtn">✅ Yes, I'm joining</button>
+                <button class="btn alt" id="joinNoBtn">
+                  ❌ No, I can't come
+                </button>
+              </div>
+              <div class="small" id="joinStatusText">
+                Choose once. After that, your personal invite will be prepared.
+              </div>
+            </div>
+
+            <div class="small" style="margin-top: 8px">
+              Tip: You can still use voice for answers using the 🎤 buttons, but
+              each question is saved only once.
+            </div>
+          </div>
+
+          <!-- RIGHT: summary & poster -->
+          <div class="section">
+            <h3>Your Answers</h3>
+            <div class="answers-list" id="answersList">
+              <p>Name: <span class="pill" id="ansName">—</span></p>
+              <p>Best Friend: <span class="pill" id="ansBestFriend">—</span></p>
+              <p>Why: <span class="pill" id="ansReason">—</span></p>
+              <p>Joining: <span class="pill" id="ansJoining">—</span></p>
+            </div>
+
+            <h3 style="margin-top: 12px">Who is coming (this device)</h3>
+            <div class="attendees" id="attendeesList">
+              <div class="attendees-empty">No one marked as joining yet.</div>
+            </div>
+
+            <h3 style="margin-top: 12px">Your personal invite</h3>
+            <div class="poster" id="posterBox">
+              <div class="poster-title">
+                MISSION :
+                <span style="color: var(--gold)">BROTHERHOOD 2025</span>
+              </div>
+              <div class="poster-sub">Hyderabad · 28 December 2025</div>
+              <div class="poster-name" id="posterName">Agent —</div>
+              <div class="poster-tagline" id="posterTagline">
+                Once you confirm you're joining, a tailored mission note will
+                appear here just for you.
+              </div>
+              <div class="poster-meta" id="posterMeta">
+                Status: Awaiting confirmation…
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // ===== STATE =====
+      const state = {
+        name: "",
+        bestFriend: "",
+        reason: "",
+        joining: null,
+        attendees: [],
+      };
+
+      // ===== DOM REFS =====
+      const entryCard = document.getElementById("entryCard");
+      const mainCard = document.getElementById("mainCard");
+      const startVoiceBtn = document.getElementById("startVoiceBtn");
+      const entryStatus = document.getElementById("entryStatus");
+      const nameInput = document.getElementById("nameInput");
+      const enterTypedBtn = document.getElementById("enterTypedBtn");
+
+      const welcomeSubtitle = document.getElementById("welcomeSubtitle");
+      const bgMusic = document.getElementById("bgMusic");
+
+      const bestFriendInput = document.getElementById("bestFriendInput");
+      const bestFriendVoiceBtn = document.getElementById("bestFriendVoiceBtn");
+      const bestFriendSaveBtn = document.getElementById("bestFriendSaveBtn");
+
+      const reasonInput = document.getElementById("reasonInput");
+      const reasonVoiceBtn = document.getElementById("reasonVoiceBtn");
+      const reasonSaveBtn = document.getElementById("reasonSaveBtn");
+
+      const joinYesBtn = document.getElementById("joinYesBtn");
+      const joinNoBtn = document.getElementById("joinNoBtn");
+      const joinStatusText = document.getElementById("joinStatusText");
+
+      const ansName = document.getElementById("ansName");
+      const ansBestFriend = document.getElementById("ansBestFriend");
+      const ansReason = document.getElementById("ansReason");
+      const ansJoining = document.getElementById("ansJoining");
+      const attendeesList = document.getElementById("attendeesList");
+
+      const posterName = document.getElementById("posterName");
+      const posterTagline = document.getElementById("posterTagline");
+      const posterMeta = document.getElementById("posterMeta");
+
+      const q1Hint = document.getElementById("q1Hint");
+      const q2Hint = document.getElementById("q2Hint");
+
+      // ===== SPEECH RECOGNITION SETUP =====
+      const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+      let recognizer = null;
+      let currentMode = null; // 'name' | 'bestFriend' | 'reason'
+
+      if (SR) {
+        recognizer = new SR();
+        recognizer.lang = "en-IN";
+        recognizer.continuous = false;
+        recognizer.interimResults = false;
+
+        recognizer.onresult = (ev) => {
+          const text = ev.results[0][0].transcript.trim();
+          if (currentMode === "name") {
+            handleNameText(text);
+          } else if (currentMode === "bestFriend") {
+            bestFriendInput.value = text;
+          } else if (currentMode === "reason") {
+            reasonInput.value = text;
+          }
+        };
+
+        recognizer.onerror = () => {
+          entryStatus.textContent = "Could not hear you. You can also type.";
+        };
+
+        recognizer.onend = () => {
+          currentMode = null;
+        };
+      } else {
+        entryStatus.textContent =
+          "Voice not supported on this browser. Please type your name.";
+      }
+
+      // ===== TEXT TO SPEECH (GIRL VOICE) =====
+      let femaleVoice = null;
+      function loadVoices() {
+        const voices = window.speechSynthesis
+          ? speechSynthesis.getVoices()
+          : [];
+        femaleVoice =
+          voices.find((v) => /female|woman/i.test(v.name)) ||
+          voices.find(
+            (v) => v.name && v.name.toLowerCase().includes("female")
+          ) ||
+          voices.find((v) => v.lang && v.lang.startsWith("en")) ||
+          voices[0] ||
+          null;
+      }
+      if (window.speechSynthesis) {
+        speechSynthesis.onvoiceschanged = loadVoices;
+        loadVoices();
+      }
+      function speak(text) {
+        if (!window.speechSynthesis) return;
+        const u = new SpeechSynthesisUtterance(text);
+        loadVoices();
+        if (femaleVoice) u.voice = femaleVoice;
+        u.pitch = 1.15;
+        u.rate = 1.03;
+        speechSynthesis.cancel();
+        speechSynthesis.speak(u);
+      }
+
+      // ===== ENTRY FLOW =====
+      startVoiceBtn.addEventListener("click", () => {
+        if (!recognizer) {
+          entryStatus.textContent =
+            "Voice not supported. Please type your name.";
+          return;
+        }
+        currentMode = "name";
+        entryStatus.textContent = "Listening… say “My name is …”";
+        try {
+          recognizer.start();
+        } catch {
+          // ignore repeated starts
+        }
+      });
+
+      function handleNameText(raw) {
+        // Extract name from "my name is X"
+        let t = raw.toLowerCase();
+        t = t.replace(/my name is|i am|this is|im|i'm/gi, "").trim();
+        const name = t || raw;
+        state.name = name;
+        enterMain();
+      }
+
+      enterTypedBtn.addEventListener("click", () => {
+        const val = nameInput.value.trim();
+        if (!val) {
+          entryStatus.textContent = "Please type your name.";
+          return;
+        }
+        state.name = val;
+        enterMain();
+      });
+
+      function enterMain() {
+        entryCard.classList.add("hidden");
+        mainCard.classList.remove("hidden");
+        welcomeSubtitle.textContent = `Welcome, ${state.name}!`;
+        ansName.textContent = state.name || "—";
+        posterName.textContent = `Agent ${state.name || "—"}`;
+
+        // start music after user interaction
+        bgMusic.volume = 0.4;
+        bgMusic.play().catch(() => {});
+
+        speak(`Welcome ${state.name}. I have three quick questions for you.`);
+
+        // only ask each question once (via voice)
+        setTimeout(() => {
+          speak("First question. Who is your best friend?");
+        }, 800);
+      }
+
+      // ===== QUESTION 1: BEST FRIEND =====
+      bestFriendVoiceBtn.addEventListener("click", () => {
+        if (!recognizer) {
+          q1Hint.textContent = "Voice not supported. Please type your answer.";
+          return;
+        }
+        currentMode = "bestFriend";
+        q1Hint.textContent = "Listening for your best friend's name…";
+        try {
+          recognizer.start();
+        } catch {}
+      });
+
+      bestFriendSaveBtn.addEventListener("click", () => {
+        if (state.bestFriend) {
+          q1Hint.textContent = "Already saved. Question won't be asked again.";
+          return;
+        }
+        const val = bestFriendInput.value.trim();
+        if (!val) {
+          q1Hint.textContent = "Please type or speak an answer first.";
+          return;
+        }
+        state.bestFriend = val;
+        ansBestFriend.textContent = val;
+        q1Hint.textContent = "Saved. I won't ask this again.";
+        speak(`Nice. ${val} sounds like a solid friend.`);
+
+        // Ask second question after a small delay (only once)
+        setTimeout(() => {
+          speak("Second question. Why is he your best friend?");
+        }, 1200);
+      });
+
+      // ===== QUESTION 2: REASON =====
+      reasonVoiceBtn.addEventListener("click", () => {
+        if (!recognizer) {
+          q2Hint.textContent = "Voice not supported. Please type your answer.";
+          return;
+        }
+        currentMode = "reason";
+        q2Hint.textContent = "Listening for your reason…";
+        try {
+          recognizer.start();
+        } catch {}
+      });
+
+      reasonSaveBtn.addEventListener("click", () => {
+        if (state.reason) {
+          q2Hint.textContent = "Already saved. Question won't be asked again.";
+          return;
+        }
+        const val = reasonInput.value.trim();
+        if (!val) {
+          q2Hint.textContent = "Please type or speak a reason first.";
+          return;
+        }
+        state.reason = val;
+        ansReason.textContent = val;
+        q2Hint.textContent = "Saved. I won't ask this again.";
+        speak("Beautiful. I’ve saved that.");
+
+        // After saving reason, wait at least 10s before final personal invite logic
+        speak(
+          "Now take a moment. In about ten seconds, I will ask if you are joining."
+        );
+        setTimeout(() => {
+          speak("Final question. Are you joining?");
+        }, 10000);
+      });
+
+      // ===== QUESTION 3: JOINING =====
+      joinYesBtn.addEventListener("click", () => {
+        if (state.joining !== null) {
+          joinStatusText.textContent =
+            "You already answered. Your invite is being prepared.";
+          return;
+        }
+        state.joining = true;
+        ansJoining.textContent = "Yes, joining";
+        joinStatusText.textContent =
+          "Marked as joining. Generating your personal invite…";
+        speak("Mission confirmed. You are joining.");
+
+        // local attendees list
+        if (!state.attendees.includes(state.name)) {
+          state.attendees.push(state.name);
+          renderAttendees();
+        }
+
+        posterMeta.textContent = "Status: Generating personal invite…";
+        posterTagline.textContent =
+          "Hold tight. Your mission briefing is loading.";
+
+        // After 10 seconds, generate personal poster message
+        setTimeout(() => {
+          posterTagline.textContent = `Agent ${state.name}, your presence is mandatory at the Brotherhood gathering on 28 December 2025 in Hyderabad.`;
+          posterMeta.textContent =
+            "Status: Confirmed · Show this screen at entry for a dramatic reveal.";
+          speak(`Agent ${state.name}, your personal invitation is ready.`);
+        }, 10000);
+      });
+
+      joinNoBtn.addEventListener("click", () => {
+        if (state.joining !== null) {
+          joinStatusText.textContent =
+            "You already answered. I won't nag you again.";
+          return;
+        }
+        state.joining = false;
+        ansJoining.textContent = "No, not coming";
+        joinStatusText.textContent =
+          "Marked as not joining. I won't ask again.";
+        posterTagline.textContent =
+          "We’ll miss your energy at the mission. If plans change, you know where to find us.";
+        posterMeta.textContent = "Status: Not joining (for now)";
+        speak("Sad to hear that. Your status is saved.");
+      });
+
+      function renderAttendees() {
+        attendeesList.innerHTML = "";
+        if (state.attendees.length === 0) {
+          attendeesList.innerHTML =
+            '<div class="attendees-empty">No one marked as joining yet.</div>';
+          return;
+        }
+        state.attendees.forEach((n, i) => {
+          const div = document.createElement("div");
+          div.textContent = `${i + 1}. ${n}`;
+          attendeesList.appendChild(div);
+        });
+        const note = document.createElement("div");
+        note.className = "small";
+        note.style.marginTop = "6px";
+        note.textContent =
+          "Note: This list is only on this device. Without backend, it won’t sync to others.";
+        attendeesList.appendChild(note);
+      }
+    </script>
+  </body>
+</html>

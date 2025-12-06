@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Brotherhood Admin</title>
+    <style>
+      body {
+        font-family: Arial;
+        background: #020617;
+        color: white;
+        padding: 20px;
+      }
+      h2 {
+        color: gold;
+      }
+      .card {
+        background: #111933;
+        padding: 12px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Mission Brotherhood – Admin Panel</h2>
+    <div id="list"></div>
+
+    <script>
+      const list = document.getElementById("list");
+
+      for (let k in localStorage) {
+        if (k.startsWith("brotherhood_")) {
+          const d = JSON.parse(localStorage[k]);
+          const div = document.createElement("div");
+          div.className = "card";
+          div.innerHTML = `
+      <b>Name:</b> ${d.name}<br>
+      <b>Joining:</b> ${d.joining}<br>
+      <b>Answers:</b>
+      <pre>${JSON.stringify(d.answers, null, 2)}</pre>
+    `;
+          list.appendChild(div);
+        }
+      }
+    </script>
+  </body>
+</html>
